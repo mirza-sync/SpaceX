@@ -8,15 +8,17 @@ const { data, error, isFetching } = useFetch(`${SPACE_X_BASE_URL}/launches`).get
 </script>
 
 <template>
-  <main class="flex w-full">
+  <main class="flex h-full w-full">
     <div class="w-1/3 m-auto text-center">
       <h1 class="text-white font-bold text-5xl">Launches</h1>
     </div>
-    <div class="w-2/3">
-      <div v-if="error">{{ error }}</div>
-      <div v-else-if="isFetching">Loading...</div>
-      <div v-else class="h-[100dvh] overflow-y-auto">
-        <TimeLine :launches="data" />
+    <div class="w-2/3 p-4">
+      <div class="h-full overflow-y-auto p-4">
+        <div v-if="error">{{ error }}</div>
+        <div v-else-if="isFetching">Loading...</div>
+        <template v-else>
+          <TimeLine :launches="data" />
+        </template>
       </div>
     </div>
   </main>
